@@ -16,24 +16,20 @@ Installation
 Clone this repository:
 
 bash
-Copy code
 git clone https://github.com/your-username/data-transfer.git
 Navigate to the project directory:
 
 bash
-Copy code
 cd data-transfer
 Run Kafka and Zookeeper using Docker Compose:
 
 bash
-Copy code
 docker-compose up -d
 Configuration
 Kafka Properties (application.yml)
 The application.yml file contains Kafka properties for configuring the Kafka producer.
 
 yaml
-Copy code
 server:
   port: 8080
 
@@ -47,7 +43,6 @@ Docker Compose
 The docker-compose.yml file defines services for Kafka and Zookeeper.
 
 yaml
-Copy code
 version: '3.7'
 
 services:
@@ -73,12 +68,10 @@ Usage
 Build the Spring Boot application using Maven:
 
 bash
-Copy code
 mvn clean package
 Run the Spring Boot application:
 
 bash
-Copy code
 java -jar target/data-transfer-1.0.0-SNAPSHOT.jar
 You can now access the API at http://localhost:8080/upload-csv to upload CSV data.
 
