@@ -19,7 +19,7 @@ Clone this repository:
 
 bash
 
-git clone https://github.com/your-username/data-transfer.git
+git clone https://github.com/Meet2197/data-transfer.git
 
 Navigate to the project directory:
 
