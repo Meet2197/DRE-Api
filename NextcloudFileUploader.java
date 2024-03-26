@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -7,10 +8,18 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+=======
+>>>>>>> origin/main
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+<<<<<<< HEAD
+=======
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Base64;
+>>>>>>> origin/main
 
 public class NextcloudFileUploader {
 
@@ -20,6 +29,7 @@ public class NextcloudFileUploader {
 
     public static void uploadCsvFileToNextcloud(File csvFile, String destinationFolder) throws IOException {
         String webDavUrl = NEXTCLOUD_URL + USERNAME + "/" + destinationFolder + "/" + csvFile.getName();
+<<<<<<< HEAD
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPut httpPut = new HttpPut(webDavUrl);
@@ -51,6 +61,41 @@ public class NextcloudFileUploader {
             }
         }
         throw new IOException("Failed to read CSV file.");
+=======
+        URL url = new URL(webDavUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("PUT");
+
+        // Set up Basic Authentication
+        String auth = USERNAME + ":" + PASSWORD;
+        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes());
+        String authHeaderValue = "Basic " + new String(encodedAuth);
+        connection.setRequestProperty("Authorization", authHeaderValue);
+
+        // Set up content type
+        connection.setRequestProperty("Content-Type", "text/csv");
+
+        // Set up content length
+        connection.setRequestProperty("Content-Length", String.valueOf(csvFile.length()));
+
+        // Enable output and write file content to the connection
+        connection.setDoOutput(true);
+        try (InputStream inputStream = new FileInputStream(csvFile)) {
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                connection.getOutputStream().write(buffer, 0, bytesRead);
+            }
+        }
+
+        // Execute the request
+        int responseCode = connection.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_CREATED) {
+            System.out.println("CSV file uploaded successfully to Nextcloud.");
+        } else {
+            System.err.println("Failed to upload CSV file to Nextcloud. Response code: " + responseCode);
+        }
+>>>>>>> origin/main
     }
 
     public static void main(String[] args) {
