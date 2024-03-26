@@ -1,7 +1,9 @@
-Data Transfer Application
+Data Transfer Application:
+======================================================================================================================================================================================================================
 This is a Spring Boot application that demonstrates data transfer functionalities using Kafka for messaging and integration with the Nextcloud API. It provides a REST API endpoint for uploading CSV data, which gets transferred to a Kafka topic and then forwarded to the Nextcloud API.
 
-Versions
+Versions:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Java: 11
 Spring Boot: 2.6.4
 Kafka: 3.0.0
