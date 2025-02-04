@@ -25,27 +25,32 @@ Maven for building the project
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Clone this repository:
 
-bash
+```bash
 
 git clone https://github.com/Meet2197/data-transfer.git
+```
 
 Navigate to the project directory:
 
-bash
+```bash
 
 cd data-transfer
+```
 
 Run Kafka and Zookeeper using Docker Compose:
 
-bash
+```bash
 
 docker-compose up -d
+
+```
 
 1.4 Configuration:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kafka Properties (application.yml)
 
 The application.yml file contains Kafka properties for configuring the Kafka producer.
+```bash
 
 yaml
 
@@ -64,12 +69,13 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
+```
 
 1.5 Docker Compose :
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The docker-compose.yml file defines services for Kafka and Zookeeper.
+```bash
 
 yaml
 
@@ -108,22 +114,24 @@ services:
     depends_on:
     
       - zookeeper
-
+```
 1.6 Usage
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Build the Spring Boot application using Maven:
 
-bash
-
+```bash
 mvn clean package
+```
 
 1.7 Run the Spring Boot application:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-bash
+```bash
 
 java -jar target/data-transfer-1.0.0-SNAPSHOT.jar
+
+```
 
 You can now access the API at http://localhost:8080/upload-csv to upload CSV data.
 
